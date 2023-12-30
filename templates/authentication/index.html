@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusion Vision - Stock Tracking</title>
+    <link rel="shortcut icon" href="{%static '/img/logo.png'%}"/>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* Black background */
+            color: #ecf0f1; /* Lighter blue text */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center the content */
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px; /* Rounder corners */
+            background-color: #3498db; /* Lighter blue button */
+            color: #ffffff; /* White text */
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9; /* Slightly darker blue on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #2c3e50; /* Darker blue footer */
+        }
+
+        footer p {
+            margin: 0;
+            color: #ffffff; /* White text for the footer */
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        <h3>Welcome to Fusion Vision's Stock Tracking</h3>
+        <p>Fusion Vision specializes in tracking stocks, with a keen focus on renowned indices like the S&P 500. Stay updated with real-time data and insights tailored for investors and traders alike.</p>
+
+        <h4>Features:</h4>
+        <ul>
+            <li>Real-time stock prices and movements</li>
+            <li>Detailed analysis and reports on the S&P 500 and other major indices</li>
+            <li>Customizable watchlists and alerts</li>
+            <li>User-friendly dashboard for seamless navigation</li>
+        </ul>
+
+        {% if user.is_authenticated %}
+        <h3>Hello {{ fname }}</h3>
+        <h4>You're successfully logged in.</h4>
+        <button><a href="signout" style="color: #ffffff; text-decoration: none;">Log Out</a></button>
+
+        {% else %}
+        <button><a href="signup" style="color: #ffffff; text-decoration: none;">Create Account</a></button>
+        <button><a href="signin" style="color: #ffffff; text-decoration: none;">Login</a></button>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Fusion Vision. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+
+</html>
